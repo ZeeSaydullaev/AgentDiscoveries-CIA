@@ -11,7 +11,6 @@ export default class LocationReportsSearch extends React.Component {
         super(props);
 
         this.state = {
-            callSign: '',
             reportTitle: '',
             locationId: '',
             fromTime: '',
@@ -21,7 +20,6 @@ export default class LocationReportsSearch extends React.Component {
             message: {}
         };
 
-        this.onCallSignChange = this.onCallSignChange.bind(this);
         this.onReportTitleChange = this.onReportTitleChange.bind(this);
         this.onLocationChange = this.onLocationChange.bind(this);
         this.onFromChange = this.onFromChange.bind(this);
@@ -37,13 +35,6 @@ export default class LocationReportsSearch extends React.Component {
 
                     <Message message={this.state.message} />
 
-                    <FormGroup>
-                        <ControlLabel>Agent Call Sign</ControlLabel>
-                        <FormControl type='text'
-                            placeholder='Enter agent Call Sign'
-                            value={this.state.callSign}
-                            onChange={this.onCallSignChange}/>
-                    </FormGroup>
                     <FormGroup>
                         <ControlLabel>Title</ControlLabel>
                         <FormControl type='text'
@@ -76,10 +67,6 @@ export default class LocationReportsSearch extends React.Component {
         );
     }
 
-    onCallSignChange(event) {
-        this.setState({ callSign: event.target.value });
-    }
-
     onReportTitleChange(event) {
         this.setState({ reportTitle: event.target.value });
     }
@@ -100,7 +87,6 @@ export default class LocationReportsSearch extends React.Component {
         event.preventDefault();
 
         const params = {
-            callSign: this.state.callSign,
             reportTitle: this.state.reportTitle,
             locationId: this.state.locationId,
             fromTime: this.state.fromTime && moment.utc(this.state.fromTime).startOf('day').toISOString(),
